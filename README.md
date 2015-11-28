@@ -17,8 +17,13 @@ ITP Residents Workshops - 2015
 3. python -m SimpleHTTPServer 8000
 4. Open browser and type localhost:8000
 
-This opens the html file with template.js. In there you can add custom elements, e.g. camera, lights, mesh etc.
-Change the script link in html file from "template.js" to "script.js", then you can see what we made in the workshop, which is a rotation cube! Woohoo!
+Default the HTML page is linked with template_0X.js. In there you can add custom elements, e.g. camera, lights, mesh, in the workshop with specific topic.
+Change the script link in HTML file from "template_0X.js" to "script_0X.js", then you can see what it is made in the specific workshop.
+
+## Topic
+* Intro
+* Import 3D model
+* Incorporate with P5js
 
 ## Resources / Links
 * Three.js: [doc](http://threejs.org/docs/), [examples](http://threejs.org/examples/)

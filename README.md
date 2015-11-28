@@ -1,12 +1,9 @@
 # Three.js Workshop
 
-Laura Chen
 ITP Residents Workshops - 2015
 
-------
-
 ## Notes
-[Here is a simple basic powerpoint :)](https://docs.google.com/presentation/d/1trkfNJqvpGR25jx57BDW0yiKH4mATuIkeHhI63SdyiA/pub?start=false&loop=false&delayms=3000)
+[Updated Google Doc](https://docs.google.com/document/d/1RwYWV94LJ3hPDWqfGGE7xWkjkXSig4r1AnkLl5wyo_s/edit?usp=sharing)
 
 ## Local server
 [let's use localhost to serve the page!]

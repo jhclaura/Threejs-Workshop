@@ -1,7 +1,14 @@
-# Three.js Workshop, 2015
+# Three.js Workshop
+
+Laura Chen
+ITP Residents Workshops - 2015
+
 ------
 
+## Notes
+[Here is a simple basic powerpoint :)](https://docs.google.com/presentation/d/1trkfNJqvpGR25jx57BDW0yiKH4mATuIkeHhI63SdyiA/pub?start=false&loop=false&delayms=3000)
 
+## Local server
 [let's use localhost to serve the page!]
 
 0. git clone OR download as ZIP
@@ -16,5 +23,7 @@
 This opens the html file with template.js. In there you can add custom elements, e.g. camera, lights, mesh etc.
 Change the script link in html file from "template.js" to "script.js", then you can see what we made in the workshop, which is a rotation cube! Woohoo!
 
-
-[Here is a simple basic powerpoint :)](https://docs.google.com/presentation/d/1trkfNJqvpGR25jx57BDW0yiKH4mATuIkeHhI63SdyiA/pub?start=false&loop=false&delayms=3000)
+## Resources / Links
+* Three.js: [doc](http://threejs.org/docs/), [examples](http://threejs.org/examples/)
+* [Udacity: Interactive 3D Graphics](https://www.udacity.com/course/interactive-3d-graphics--cs291)
+* [Stemkoski's github](http://stemkoski.github.io/Three.js/)

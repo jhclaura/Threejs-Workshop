@@ -3,7 +3,7 @@
 ITP Residents Workshops - 2015
 
 ## Notes
-[Updated Google Doc](https://docs.google.com/document/d/1RwYWV94LJ3hPDWqfGGE7xWkjkXSig4r1AnkLl5wyo_s/edit?usp=sharing)
+[Of the workshops here!](https://docs.google.com/document/d/1RwYWV94LJ3hPDWqfGGE7xWkjkXSig4r1AnkLl5wyo_s/edit?usp=sharing)
 
 ## Local server
 [let's use localhost to serve the page!]

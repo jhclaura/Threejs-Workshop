@@ -6,9 +6,10 @@ ITP Residents Workshops - 2015
 [Of the workshops here!](https://docs.google.com/document/d/1RwYWV94LJ3hPDWqfGGE7xWkjkXSig4r1AnkLl5wyo_s/edit?usp=sharing)
 
 ## Topic
-* Intro
-* Import 3D model
+* Intro: Up & Run
 * Incorporate with P5js
+* Import 3D model
+* Play Video
 
 ## Local server
 [let's use localhost to serve the page!]

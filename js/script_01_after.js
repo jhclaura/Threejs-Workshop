@@ -1,7 +1,3 @@
-	
-
-
-
 ////////////////////////////////////////////////////////////	
 // SET_UP_VARIABLES
 ////////////////////////////////////////////////////////////
@@ -16,7 +12,7 @@ var screenWidth = window.innerWidth;
 var screenHeight = window.innerHeight;
 
 // custom global variables
-
+var cubes;
 
 
 // kind of like setup()
@@ -41,7 +37,9 @@ function init()
 
 	// LIGHT
 	// create light for the scene
-
+	var light = new THREE.PointLight( 0xffffff, 1 );
+	light.position.set(20,20,20);
+	scene.add(light);
 
 
 	// CAMERA
@@ -52,11 +50,17 @@ function init()
 	scene.add(camera);								//add camera into the scene
 
 
-	// CUBE
+	// CUBE (MESH)
+	// needs geometry + material
+	var geometry = new THREE.BoxGeometry(5,5,5);
+	var mat = new THREE.MeshLambertMaterial({color: 0xff0000});
+	var mesh = new THREE.Mesh(geometry, mat);
+	scene.add(mesh);
 
-
-
-
+	geometry = new THREE.SphereGeometry(5);
+	mesh = new THREE.Mesh(geometry, mat);
+	mesh.position.set(10,0,0);
+	scene.add(mesh);
 
 
 	
@@ -88,14 +92,13 @@ function init()
 function animate() 
 {
     requestAnimationFrame( animate );				//http://creativejs.com/resources/requestanimationframe/
-	render();		
 	update();
+	render();		
 }
 
 function update()
 {		
 	controls.update();
-
 }
 
 function render() 

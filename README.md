@@ -1,15 +1,16 @@
-# Three.js Workshop
+# Three.js Pop-Up Workshop
 
 ITP Residents Workshops - 2015
 
 ## Notes
-[Of the workshops here!](https://docs.google.com/document/d/1RwYWV94LJ3hPDWqfGGE7xWkjkXSig4r1AnkLl5wyo_s/edit?usp=sharing)
+[From the workshops here!](https://docs.google.com/document/d/1RwYWV94LJ3hPDWqfGGE7xWkjkXSig4r1AnkLl5wyo_s/edit?usp=sharing)
 
 ## Topic
-* Intro: Up & Run
-* Incorporate with P5js
-* Import 3D model
-* Play Video
+* Intro: Up & Run (11/30/15)
+* Incorporate with P5js (11/30/15)
+* Import 3D model (to be pop-up)
+* Play Video (to be pop-up)
+* ...
 
 ## Local server
 [let's use localhost to serve the page!]

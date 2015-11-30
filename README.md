@@ -5,6 +5,11 @@ ITP Residents Workshops - 2015
 ## Notes
 [Of the workshops here!](https://docs.google.com/document/d/1RwYWV94LJ3hPDWqfGGE7xWkjkXSig4r1AnkLl5wyo_s/edit?usp=sharing)
 
+## Topic
+* Intro
+* Import 3D model
+* Incorporate with P5js
+
 ## Local server
 [let's use localhost to serve the page!]
 
@@ -19,11 +24,6 @@ ITP Residents Workshops - 2015
 
 Default the HTML page is linked with template_0X.js. In there you can add custom elements, e.g. camera, lights, mesh, in the workshop with specific topic.
 Change the script link in HTML file from "template_0X.js" to "script_0X.js", then you can see what it is made in the specific workshop.
-
-## Topic
-* Intro
-* Import 3D model
-* Incorporate with P5js
 
 ## Resources / Links
 * Three.js: [doc](http://threejs.org/docs/), [examples](http://threejs.org/examples/)

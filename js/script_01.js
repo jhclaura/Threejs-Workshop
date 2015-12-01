@@ -1,9 +1,12 @@
+// I'm a white/nothing but working template.
+
 ////////////////////////////////////////////////////////////	
 // SET_UP_VARIABLES
 ////////////////////////////////////////////////////////////
 
 // standard global variables
 var scene, cameraThree, renderer;
+var light;
 
 
 var container;
@@ -12,7 +15,7 @@ var screenWidth = window.innerWidth;
 var screenHeight = window.innerHeight;
 
 // custom global variables
-var cubes;
+var cube;
 
 
 // kind of like setup()
@@ -39,7 +42,6 @@ function init()
 	// create light for the scene
 
 
-
 	// CAMERA
 	// PerspectiveCamera( field of view, aspect, near, far )
 	cameraThree = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
@@ -51,7 +53,6 @@ function init()
 	// CUBE (MESH)
 	// needs geometry + material
 
-
 	
 
 	// RENDERER
@@ -60,8 +61,8 @@ function init()
 	renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	
-	// renderer.setClearColor(0xeff5d5, 1);			//set background color
-	renderer.setClearColor(0xffffff, 1);
+	renderer.setClearColor(0x000000, 1);			//set background color
+	// renderer.setClearColor(0xffffff, 1);
 
 	container.appendChild(renderer.domElement);
 

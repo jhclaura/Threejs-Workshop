@@ -73,8 +73,10 @@ function init()
 	videoo.autoplay = true;
 	videoo.loop = true;
 	videoo.src = "videos/house.mp4";
+
 	videoTexture = new THREE.Texture( videoo );
 	videoTexture.minFilter = THREE.NearestFilter;
+	texture.magFilter = THREE.LinearFilter;
 
 	geo = new THREE.PlaneGeometry(16,9);
 	mat = new THREE.MeshBasicMaterial( {map: videoTexture, side: THREE.DoubleSide} );
@@ -86,20 +88,6 @@ function init()
 			scene.add(mesh);
 		}
 	}
-
-	geo = new THREE.SphereGeometry(5, 32, 32);
-	mat = new THREE.MeshLambertMaterial( {color: 0xffffff} );
-	var sphere = new THREE.Mesh(geo, mat);
-	sphere.position.set(10,0,0);
-	scene.add(sphere);
-
-	geo = new THREE.PlaneGeometry(100,100);
-	mat = new THREE.MeshLambertMaterial( {color: 0xed5d9c} );
-	var plane = new THREE.Mesh(geo, mat);
-	plane.position.y = -10;
-	plane.rotation.x = -Math.PI/2;
-	scene.add(plane);
-	
 
 	// RENDERER
 	container = document.createElement('div');
@@ -123,16 +111,18 @@ function init()
 	// left click to rotate, middle click/scroll to zoom, right click to pan
 	controls = new THREE.OrbitControls( cameraThree, renderer.domElement );
 
-	if(thisIsTouchDevice) {
+
+	var onTouchStart = function ( event ) {
+		if(!videoIsPlaying){
+			videoo.play();
+			videoIsPlaying = true;
+			console.log("play video!");
+		}		
+	}
+
+	if(thisIsTouchDevice)
 		document.addEventListener( 'touchstart', onTouchStart, false );
 		
-}
-
-var onTouchStart = function ( event ) {
-	if(!videoIsPlaying){
-		videoo.play();
-		videoIsPlaying = true;
-	}
 }
 
 
@@ -164,6 +154,6 @@ function onWindowResize() {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 }
 
-function isTouchDevice() { 
+function isTouchDevice() {
 	return 'ontouchstart' in window || !!(navigator.msMaxTouchPoints);
 }

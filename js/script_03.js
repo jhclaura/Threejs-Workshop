@@ -18,6 +18,11 @@ var imgScreen, screens;
 var videoo, videoTexture;
 var videoIsPlaying = false;
 
+var thisIsTouchDevice = false;
+if( isTouchDevice() ) thisIsTouchDevice = true;
+
+
+///////////////////////////////////////////////////////////
 
 // kind of like setup()
 init();
@@ -117,6 +122,9 @@ function init()
 	// CONTROLS
 	// left click to rotate, middle click/scroll to zoom, right click to pan
 	controls = new THREE.OrbitControls( cameraThree, renderer.domElement );
+
+	if(thisIsTouchDevice) {
+		document.addEventListener( 'touchstart', onTouchStart, false );
 		
 }
 
@@ -154,4 +162,8 @@ function onWindowResize() {
 	cameraThree.aspect = window.innerWidth / window.innerHeight;
 	cameraThree.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
+}
+
+function isTouchDevice() { 
+	return 'ontouchstart' in window || !!(navigator.msMaxTouchPoints);
 }

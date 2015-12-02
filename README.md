@@ -9,13 +9,9 @@ ITP Residents Workshops - 2015
 * Intro: Up & Run (11/30/15)
 * Incorporate with P5js (11/30/15)
 
-- - -
-
 * Texture & Video (to be pop-up)
 * Animation Scripting (to be pop-up)
 * Import 3D model (to be pop-up)
-
-- - -
 
 * VR (to be pop-up)
 * X'mas card! (to be pop-up)

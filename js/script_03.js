@@ -87,6 +87,7 @@ function init()
 	container = document.createElement('div');
 	document.body.appendChild(container);
 	renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	
 	renderer.setClearColor(0xfdf3a0, 1);			//set background color

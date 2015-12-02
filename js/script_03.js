@@ -16,6 +16,7 @@ var screenHeight = window.innerHeight;
 var imgScreen, screens;
 
 var videoo, videoTexture;
+var videoIsPlaying = false;
 
 
 // kind of like setup()
@@ -117,6 +118,13 @@ function init()
 	// left click to rotate, middle click/scroll to zoom, right click to pan
 	controls = new THREE.OrbitControls( cameraThree, renderer.domElement );
 		
+}
+
+var onTouchStart = function ( event ) {
+	if(!videoIsPlaying){
+		videoo.play();
+		videoIsPlaying = true;
+	}
 }
 
 

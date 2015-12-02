@@ -3,7 +3,7 @@
 ITP Residents Workshops - 2015
 
 ## Notes
-[From the workshops here!](https://docs.google.com/document/d/1RwYWV94LJ3hPDWqfGGE7xWkjkXSig4r1AnkLl5wyo_s/edit?usp=sharing)
+[Of the workshops](https://docs.google.com/document/d/1RwYWV94LJ3hPDWqfGGE7xWkjkXSig4r1AnkLl5wyo_s/edit?usp=sharing)
 
 ## Topic
 * Pop-up on 11/30/15
@@ -17,7 +17,7 @@ ITP Residents Workshops - 2015
 	* VR
 	* X'mas card!
 
-## Local server
+## Using local server
 [let's use localhost to serve the page!]
 
 0. git clone OR download as ZIP

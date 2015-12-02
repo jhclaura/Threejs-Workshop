@@ -6,7 +6,6 @@
 var scene, cameraThree, renderer;
 var light;
 
-
 var container;
 var controls;
 var screenWidth = window.innerWidth;

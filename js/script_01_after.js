@@ -41,8 +41,8 @@ function init()
 	light = new THREE.DirectionalLight( 0xffffff, 1);
 	light.position.set(1,1,1);
 	scene.add(light);
-	light = new THREE.DirectionalLight( 0xffffff, 0.5);
-	light.position.set(-1,-1,-1);
+	light = new THREE.DirectionalLight( 0xffffff, 1);
+	light.position.set(-1,1,-1);
 	scene.add(light);
 
 
@@ -57,12 +57,14 @@ function init()
 	// CUBE (MESH)
 	// needs geometry + material
 	var geo = new THREE.BoxGeometry(5,5,5);
-	var mat = new THREE.MeshLambertMaterial( {color: 0xff0000} );
+	var mat = new THREE.MeshLambertMaterial( {color: 0xffff00} );
 	cube = new THREE.Mesh( geo, mat );
+	cube.position.x = -10;
 	scene.add(cube);
 
 	for(var i=0; i<50; i+=10 ){
 		for(var j=0; j<50; j+=10) {
+			mat = new THREE.MeshLambertMaterial( {color: Math.random() * 0xffffff} );	// random colors!
 			var mesh = new THREE.Mesh( geo, mat );
 			mesh.position.set(i,j,j)
 			scene.add(mesh);
@@ -70,12 +72,13 @@ function init()
 	}
 
 	geo = new THREE.SphereGeometry(5, 32, 32);
+	mat = new THREE.MeshLambertMaterial( {color: 0xffffff} );
 	var sphere = new THREE.Mesh(geo, mat);
 	sphere.position.set(10,0,0);
 	scene.add(sphere);
 
 	geo = new THREE.PlaneGeometry(100,100);
-	mat = new THREE.MeshLambertMaterial( {color: 0xffffff} );
+	mat = new THREE.MeshLambertMaterial( {color: 0xed5d9c} );
 	var plane = new THREE.Mesh(geo, mat);
 	plane.position.y = -10;
 	plane.rotation.x = -Math.PI/2;
@@ -88,7 +91,7 @@ function init()
 	renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	
-	renderer.setClearColor(0x000000, 1);			//set background color
+	renderer.setClearColor(0xfdf3a0, 1);			//set background color
 	// renderer.setClearColor(0xffffff, 1);
 
 	container.appendChild(renderer.domElement);

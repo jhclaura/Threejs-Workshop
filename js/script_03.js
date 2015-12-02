@@ -13,7 +13,7 @@ var screenWidth = window.innerWidth;
 var screenHeight = window.innerHeight;
 
 // custom global variables
-var screens;
+var imgScreen, screens;
 
 
 // kind of like setup()
@@ -45,7 +45,6 @@ function init()
 	light.position.set(-1,1,-1);
 	scene.add(light);
 
-
 	// CAMERA
 	// PerspectiveCamera( field of view, aspect, near, far )
 	cameraThree = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
@@ -53,16 +52,17 @@ function init()
 	// cameraThree.position.set(0,150,400);				//can also do position.set(x, y, z)
 	scene.add(cameraThree);								//add camera into the scene
 
-
-	var geo = new THREE.PlaneGeometry(5,5,5);
-	var mat = new THREE.MeshLambertMaterial( {color: 0xffff00} );
-	cube = new THREE.Mesh( geo, mat );
-	cube.position.x = -10;
-	scene.add(cube);
+	// TEXTURE
+	var geo = new THREE.PlaneGeometry(10,10);
+	var texture = THREE.ImageUtils.loadTexture("images/1.png");
+	var mat = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
+	imgScreen = new THREE.Mesh( geo, mat );
+	imgScreen.position.x = -10;
+	scene.add(imgScreen);
 
 	for(var i=0; i<50; i+=10 ){
 		for(var j=0; j<50; j+=10) {
-			mat = new THREE.MeshLambertMaterial( {color: Math.random() * 0xffffff} );	// random colors!
+			mat = new THREE.MeshBasicMaterial( {color: Math.random() * 0xffffff} );	// random colors!
 			var mesh = new THREE.Mesh( geo, mat );
 			mesh.position.set(i,j,j)
 			scene.add(mesh);
@@ -87,6 +87,7 @@ function init()
 	container = document.createElement('div');
 	document.body.appendChild(container);
 	renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	
 	renderer.setClearColor(0xfdf3a0, 1);			//set background color
@@ -118,7 +119,7 @@ function update()
 {		
 	controls.update();
 
-	cube.rotation.y += 0.1;
+	imgScreen.rotation.y += 0.1;
 }
 
 function render() 

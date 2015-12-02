@@ -15,6 +15,8 @@ var screenHeight = window.innerHeight;
 // custom global variables
 var imgScreen, screens;
 
+var videoo, videoTexture;
+
 
 // kind of like setup()
 init();
@@ -52,7 +54,7 @@ function init()
 	// cameraThree.position.set(0,150,400);				//can also do position.set(x, y, z)
 	scene.add(cameraThree);								//add camera into the scene
 
-	// TEXTURE
+	// IMAGE_TEXTURE
 	var geo = new THREE.PlaneGeometry(10,10);
 	var texture = THREE.ImageUtils.loadTexture("images/1.png");
 	var mat = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
@@ -60,9 +62,19 @@ function init()
 	imgScreen.position.x = -10;
 	scene.add(imgScreen);
 
-	for(var i=0; i<50; i+=10 ){
-		for(var j=0; j<50; j+=10) {
-			mat = new THREE.MeshBasicMaterial( {color: Math.random() * 0xffffff} );	// random colors!
+	// VIDEO_TEXTURE
+	videoo = document.createElement('video');
+	videoo.autoplay = true;
+	videoo.loop = true;
+	videoo.src = "videos/house.mp4";
+	videoTexture = new THREE.Texture( videoo );
+	videoTexture.minFilter = THREE.NearestFilter;
+
+	geo = new THREE.PlaneGeometry(16,9);
+	mat = new THREE.MeshBasicMaterial( {map: videoTexture, side: THREE.DoubleSide} );
+
+	for(var i=0; i<100; i+=20 ){
+		for(var j=0; j<100; j+=20) {
 			var mesh = new THREE.Mesh( geo, mat );
 			mesh.position.set(i,j,j)
 			scene.add(mesh);
@@ -120,6 +132,9 @@ function update()
 	controls.update();
 
 	imgScreen.rotation.y += 0.1;
+
+	if( videoo.readyState !== videoo.HAVE_ENOUGH_DATA ) return;
+	videoTexture.needsUpdate = true;
 }
 
 function render() 

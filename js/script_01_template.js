@@ -1,4 +1,10 @@
-// I'm a white/nothing but working template.
+/*
+ * Made by @jhclaura (Laura Chen, jhclaura.com)
+ * for Three.js Pop-Up Workshops
+ * X'mas season 2015
+ *
+ * @A blank but working template.
+ */
 
 ////////////////////////////////////////////////////////////	
 // SET_UP_VARIABLES

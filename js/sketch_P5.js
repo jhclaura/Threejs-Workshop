@@ -1,4 +1,5 @@
 /*
+ * P5js Example:
  * @name Multiple Objects
  * @description Create a Jitter class, instantiate multiple objects,
  * and move it around the screen. 

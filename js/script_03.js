@@ -15,6 +15,14 @@ var screenHeight = window.innerHeight;
 // custom global variables
 var imgScreen, screens;
 
+var videoo, videoTexture;
+var videoIsPlaying = false;
+
+var thisIsTouchDevice = false;
+if( isTouchDevice() ) thisIsTouchDevice = true;
+
+
+///////////////////////////////////////////////////////////
 
 // kind of like setup()
 init();
@@ -52,7 +60,7 @@ function init()
 	// cameraThree.position.set(0,150,400);				//can also do position.set(x, y, z)
 	scene.add(cameraThree);								//add camera into the scene
 
-	// TEXTURE
+	// IMAGE_TEXTURE
 	var geo = new THREE.PlaneGeometry(10,10);
 	var texture = THREE.ImageUtils.loadTexture("images/1.png");
 	var mat = new THREE.MeshBasicMaterial( {map: texture, side: THREE.DoubleSide} );
@@ -60,28 +68,26 @@ function init()
 	imgScreen.position.x = -10;
 	scene.add(imgScreen);
 
-	for(var i=0; i<50; i+=10 ){
-		for(var j=0; j<50; j+=10) {
-			mat = new THREE.MeshBasicMaterial( {color: Math.random() * 0xffffff} );	// random colors!
+	// VIDEO_TEXTURE
+	videoo = document.createElement('video');
+	videoo.autoplay = true;
+	videoo.loop = true;
+	videoo.src = "videos/house.mp4";
+
+	videoTexture = new THREE.Texture( videoo );
+	videoTexture.minFilter = THREE.NearestFilter;
+	texture.magFilter = THREE.LinearFilter;
+
+	geo = new THREE.PlaneGeometry(16,9);
+	mat = new THREE.MeshBasicMaterial( {map: videoTexture, side: THREE.DoubleSide} );
+
+	for(var i=0; i<100; i+=20 ){
+		for(var j=0; j<100; j+=20) {
 			var mesh = new THREE.Mesh( geo, mat );
 			mesh.position.set(i,j,j)
 			scene.add(mesh);
 		}
 	}
-
-	geo = new THREE.SphereGeometry(5, 32, 32);
-	mat = new THREE.MeshLambertMaterial( {color: 0xffffff} );
-	var sphere = new THREE.Mesh(geo, mat);
-	sphere.position.set(10,0,0);
-	scene.add(sphere);
-
-	geo = new THREE.PlaneGeometry(100,100);
-	mat = new THREE.MeshLambertMaterial( {color: 0xed5d9c} );
-	var plane = new THREE.Mesh(geo, mat);
-	plane.position.y = -10;
-	plane.rotation.x = -Math.PI/2;
-	scene.add(plane);
-	
 
 	// RENDERER
 	container = document.createElement('div');
@@ -104,6 +110,18 @@ function init()
 	// CONTROLS
 	// left click to rotate, middle click/scroll to zoom, right click to pan
 	controls = new THREE.OrbitControls( cameraThree, renderer.domElement );
+
+
+	var onTouchStart = function ( event ) {
+		if(!videoIsPlaying){
+			videoo.play();
+			videoIsPlaying = true;
+			console.log("play video!");
+		}		
+	}
+
+	if(thisIsTouchDevice)
+		document.addEventListener( 'touchstart', onTouchStart, false );
 		
 }
 
@@ -120,6 +138,9 @@ function update()
 	controls.update();
 
 	imgScreen.rotation.y += 0.1;
+
+	if( videoo.readyState !== videoo.HAVE_ENOUGH_DATA ) return;
+	videoTexture.needsUpdate = true;
 }
 
 function render() 
@@ -131,4 +152,8 @@ function onWindowResize() {
 	cameraThree.aspect = window.innerWidth / window.innerHeight;
 	cameraThree.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
+}
+
+function isTouchDevice() {
+	return 'ontouchstart' in window || !!(navigator.msMaxTouchPoints);
 }

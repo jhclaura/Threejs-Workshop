@@ -130,6 +130,14 @@ function init()
 	// left click to rotate, middle click/scroll to zoom, right click to pan
 	controls = new THREE.OrbitControls( cameraThree, renderer.domElement );
 
+	var onTouchStart = function ( event ) {
+		// if(!videoIsPlaying){
+			videoo.play();
+			// videoIsPlaying = true;
+			console.log("play video!");
+		// }		
+	}
+
 	if(thisIsTouchDevice)
 		document.addEventListener( 'touchstart', onTouchStart, false );
 		
@@ -139,13 +147,6 @@ function onVideoPlayButtonClick(){
 	videoo.play();
 }
 
-var onTouchStart = function ( event ) {
-	// if(!videoIsPlaying){
-		videoo.play();
-		// videoIsPlaying = true;
-		console.log("play video!");
-	// }		
-}
 
 
 function animate() 

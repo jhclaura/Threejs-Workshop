@@ -82,7 +82,7 @@ function init()
 	// videoo.autoplay = true;
 	videoo.loop = true;
 	// videoo.preload = "auto";
-	videoo.src = "videos/house.mp4";
+	videoo.src = "videos/6B2A5589.MOV";
 	videoo.setAttribute("webkit-playsinline", "");
 
 	videoImage = document.createElement('canvas');

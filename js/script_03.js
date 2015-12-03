@@ -122,11 +122,11 @@ function init()
 
 
 	var onTouchStart = function ( event ) {
-		if(!videoIsPlaying){
+		// if(!videoIsPlaying){
 			videoo.play();
-			videoIsPlaying = true;
+			// videoIsPlaying = true;
 			console.log("play video!");
-		}		
+		// }		
 	}
 
 	if(thisIsTouchDevice)

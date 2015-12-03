@@ -142,8 +142,8 @@ function init()
 	// 	// }		
 	// }
 
-	if(thisIsTouchDevice)
-		document.addEventListener( 'touchstart', onTouchStart, false );
+	// if(thisIsTouchDevice)
+	// 	document.addEventListener( 'touchstart', onTouchStart, false );
 		
 }
 

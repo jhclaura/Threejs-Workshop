@@ -79,9 +79,9 @@ function init()
 
 	// VIDEO_TEXTURE
 	videoo = document.createElement('video');
-	videoo.autoplay = true;
+	// videoo.autoplay = true;
 	videoo.loop = true;
-	videoo.preload = "auto";
+	// videoo.preload = "auto";
 	videoo.src = "videos/house.mp4";
 	videoo.setAttribute("webkit-playsinline", "");
 

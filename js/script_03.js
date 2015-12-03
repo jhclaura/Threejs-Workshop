@@ -129,7 +129,7 @@ function init()
 	// left click to rotate, middle click/scroll to zoom, right click to pan
 	controls = new THREE.OrbitControls( cameraThree, renderer.domElement );
 
-	var onTouchMove = function ( event ) {
+	var onTouchStart = function ( event ) {
 		// if(!videoIsPlaying){
 			videoo.play();
 			// videoIsPlaying = true;
@@ -138,7 +138,7 @@ function init()
 	}
 
 	if(thisIsTouchDevice)
-		document.addEventListener( 'touchmove', onTouchMove, false );
+		document.body.addEventListener( 'touchstart', onTouchStart, false );
 		
 }
 
@@ -167,7 +167,8 @@ function render()
 {	
 	if( videoo.readyState === videoo.HAVE_ENOUGH_DATA ) {
 		videoImageContext.drawImage(videoo, 0, 0);
-		videoTexture.needsUpdate = true;
+		if(videoTexture)
+			videoTexture.needsUpdate = true;
 	}
 
 	renderer.render( scene, cameraThree );

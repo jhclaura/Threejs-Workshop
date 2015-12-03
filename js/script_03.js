@@ -2,6 +2,9 @@
  * Made by @jhclaura (Laura Chen, jhclaura.com)
  * for Three.js Pop-Up Workshops
  * X'mas season 2015
+ *
+ * @Topic: Video
+ * @Reference hugely from: http://jeromeetienne.github.io/threex.videotexture/examples/videotexture.html
  */
  
 ////////////////////////////////////////////////////////////	

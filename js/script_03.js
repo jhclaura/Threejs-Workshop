@@ -78,6 +78,15 @@ function init()
 	scene.add(imgScreen);
 
 	// VIDEO_TEXTURE
+	// find out which file formats i can read
+	var canPlayMp4	= document.createElement('video').canPlayType('video/mp4') !== '' ? true : false
+	var canPlayOgg	= document.createElement('video').canPlayType('video/ogg') !== '' ? true : false
+	if( canPlayMp4 ){
+		console.log("can play mp4");
+	}else if( canPlayOgg ){
+		console.log("can play ogg");
+	}else	alert('cant play mp4 or ogg')
+
 	videoo = document.createElement('video');
 	videoo.autoplay = true;
 	videoo.loop = true;
@@ -146,14 +155,14 @@ function update()
 {		
 	controls.update();
 
-	imgScreen.rotation.y += 0.1;
-
-	if( videoo.readyState !== videoo.HAVE_ENOUGH_DATA ) return;
-	videoTexture.needsUpdate = true;
+	imgScreen.rotation.y += 0.1;	
 }
 
-function render() 
+function render()
 {	
+	if( videoo.readyState !== videoo.HAVE_ENOUGH_DATA ) return;
+	videoTexture.needsUpdate = true;
+
 	renderer.render( scene, cameraThree );
 }
 

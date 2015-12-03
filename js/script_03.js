@@ -24,7 +24,7 @@ var screenHeight = window.innerHeight;
 // custom global variables
 var imgScreen, screens;
 
-var videoo, videoTexture;
+var videoo, videoImage, videoImageContext, videoTexture;
 var videoIsPlaying = false;
 
 var thisIsTouchDevice = false;
@@ -78,24 +78,22 @@ function init()
 	scene.add(imgScreen);
 
 	// VIDEO_TEXTURE
-	// find out which file formats i can read
-	var canPlayMp4	= document.createElement('video').canPlayType('video/mp4') !== '' ? true : false
-	var canPlayOgg	= document.createElement('video').canPlayType('video/ogg') !== '' ? true : false
-	if( canPlayMp4 ){
-		console.log("can play mp4");
-	}else if( canPlayOgg ){
-		console.log("can play ogg");
-	}else	alert('cant play mp4 or ogg')
-
 	videoo = document.createElement('video');
 	videoo.autoplay = true;
 	videoo.loop = true;
 	videoo.preload = "auto";
-	videoo.src = "videos/sintel.mp4";
+	videoo.src = "videos/house.mp4";
 	videoo.setAttribute("webkit-playsinline", "");
-	videoo.setAttribute("controls", "");
 
-	videoTexture = new THREE.Texture( videoo );
+	videoImage = document.createElement('canvas');
+	videoImage.width = 1920;
+	videoImage.height = 1080;
+
+	videoImageContext = videoImage.getContext('2d');
+	videoImageContext.fillRect(0,0, videoImage.width, videoImage.height);
+
+	// videoTexture = new THREE.Texture( videoo );
+	videoTexture = new THREE.Texture( videoImage );
 	videoTexture.minFilter = THREE.NearestFilter;
 	texture.magFilter = THREE.LinearFilter;
 
@@ -127,7 +125,6 @@ function init()
 	// automatically resize renderer
 	window.addEventListener( 'resize', onWindowResize, false );
 
-	
 	// CONTROLS
 	// left click to rotate, middle click/scroll to zoom, right click to pan
 	controls = new THREE.OrbitControls( cameraThree, renderer.domElement );
@@ -164,13 +161,14 @@ function update()
 
 	imgScreen.rotation.y += 0.1;
 
-	videoo.play();
 }
 
 function render()
 {	
-	if( videoo.readyState !== videoo.HAVE_ENOUGH_DATA ) return;
-	videoTexture.needsUpdate = true;
+	if( videoo.readyState === videoo.HAVE_ENOUGH_DATA ) {
+		videoImageContext.drawImage(videoo, 0, 0);
+		videoTexture.needsUpdate = true;
+	}
 
 	renderer.render( scene, cameraThree );
 }

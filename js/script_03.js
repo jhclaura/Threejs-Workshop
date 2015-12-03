@@ -81,7 +81,7 @@ function init()
 	videoo = document.createElement('video');
 	videoo.autoplay = true;
 	videoo.loop = true;
-	videoo.src = "videos/house.mp4";
+	videoo.src = "videos/sintel.mp4";
 
 	videoTexture = new THREE.Texture( videoo );
 	videoTexture.minFilter = THREE.NearestFilter;

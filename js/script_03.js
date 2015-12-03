@@ -91,6 +91,7 @@ function init()
 	videoo.autoplay = true;
 	videoo.loop = true;
 	videoo.src = "videos/sintel.mp4";
+	videoo.webkit-playsinline = true;
 
 	videoTexture = new THREE.Texture( videoo );
 	videoTexture.minFilter = THREE.NearestFilter;

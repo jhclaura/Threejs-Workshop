@@ -90,8 +90,10 @@ function init()
 	videoo = document.createElement('video');
 	videoo.autoplay = true;
 	videoo.loop = true;
+	videoo.preload = "auto";
 	videoo.src = "videos/sintel.mp4";
 	videoo.setAttribute("webkit-playsinline", "");
+	videoo.setAttribute("controls", "");
 
 	videoTexture = new THREE.Texture( videoo );
 	videoTexture.minFilter = THREE.NearestFilter;
@@ -160,7 +162,9 @@ function update()
 {		
 	controls.update();
 
-	imgScreen.rotation.y += 0.1;	
+	imgScreen.rotation.y += 0.1;
+
+	videoo.play();
 }
 
 function render()

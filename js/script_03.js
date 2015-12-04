@@ -81,7 +81,7 @@ function init()
 	videoo = document.createElement('video');
 	videoo.setAttribute("webkit-playsinline", "");
 	videoo.setAttribute("playsinline", "");
-	// videoo.autoplay = true;
+	videoo.autoplay = true;
 	videoo.loop = true;
 	videoo.preload = "auto";
 	videoo.src = "videos/house.mov";

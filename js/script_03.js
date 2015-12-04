@@ -83,13 +83,11 @@ function init()
 	scene.add(imgScreen);
 
 	// VIDEO_TEXTURE
-	/*
 	videoo = document.createElement('video');
 	videoo.setAttribute("webkit-playsinline", "");
-	videoo.setAttribute("playsinline", "");
-	// videoo.autoplay = true;
+	videoo.autoplay = true;
 	videoo.loop = true;
-	// videoo.preload = "auto";
+	videoo.preload = "auto";
 	videoo.src = "videos/sintel.mp4";
 
 	//
@@ -102,17 +100,17 @@ function init()
 	videoImage = document.createElement('canvas');
 	videoImage.width = 480;
 	videoImage.height = 204;
-	*/
+	
 
 	//
-	videoo = document.getElementById('video');
-	videoImage = document.getElementById('videoImage');
+	// videoo = document.getElementById('video');
+	// videoImage = document.getElementById('videoImage');
 
-	videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
-	// hide the controls if they're visible
-    if (videoo.hasAttribute("controls")) {
-        videoo.removeAttribute("controls")   
-    }
+	// videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
+	// // hide the controls if they're visible
+ //    if (videoo.hasAttribute("controls")) {
+ //        videoo.removeAttribute("controls")   
+ //    }
 
 	videoImageContext = videoImage.getContext('2d');
 	videoImageContext.fillStyle = '#ffffff';

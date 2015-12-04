@@ -103,11 +103,11 @@ function init()
 
 	// videoTexture = new THREE.Texture( videoo );
 	videoTexture = new THREE.Texture( videoImage );
-	videoTexture.minFilter = THREE.LinearFilter;
+	videoTexture.minFilter = THREE.NearestFilter;
 	videoTexture.magFilter = THREE.LinearFilter;
 
 	geo = new THREE.PlaneGeometry(16,9);
-	mat = new THREE.MeshBasicMaterial( {map: videoTexture, overdraw: true, side: THREE.DoubleSide} );
+	mat = new THREE.MeshBasicMaterial( {map: videoTexture, side: THREE.DoubleSide} );
 
 	for(var i=0; i<100; i+=20 ){
 		for(var j=0; j<100; j+=20) {

@@ -10,6 +10,14 @@
 			<video id="video" controls webkit-playsinline autoplay loop width="480" height="204" style="display:none" src="videos/sintel.mp4"></video>
 			<canvas id="videoImage" width="480" height="204" style="display:none"></canvas>
 
+			<script type="text/javascript">
+				var whichMobile = "";
+				if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
+					console.log("I'm iOS!");
+					whichMobile = "iOS_mobile";
+				}
+			</script>
+
 			<script type="text/javascript" src="js/lib/three.min.js"></script>
 			<script type="text/javascript" src="js/lib/OrbitControls.js"></script>
 			<script type="text/javascript" src="js/script_03.js"></script>

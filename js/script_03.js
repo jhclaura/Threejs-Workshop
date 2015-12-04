@@ -94,8 +94,8 @@ function init()
     }
 
 	videoImage = document.createElement('canvas');
-	videoImage.width = 1920;
-	videoImage.height = 1080;
+	videoImage.width = 480;
+	videoImage.height = 204;
 
 	videoImageContext = videoImage.getContext('2d');
 	videoImageContext.fillStyle = '#000000';

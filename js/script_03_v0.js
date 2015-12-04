@@ -78,7 +78,6 @@ function init()
 	scene.add(imgScreen);
 
 	// VIDEO_TEXTURE
-	/*
 	videoo = document.createElement('video');
 	videoo.setAttribute("webkit-playsinline", "");
 	videoo.setAttribute("playsinline", "");
@@ -97,25 +96,15 @@ function init()
 	videoImage = document.createElement('canvas');
 	videoImage.width = 480;
 	videoImage.height = 204;
-	*/
-
-	//
-	videoo = document.getElementById('video');
-	videoImage = document.getElementById('videoImage');
 
 	videoImageContext = videoImage.getContext('2d');
-	videoImageContext.fillStyle = '#ffffff';
+	videoImageContext.fillStyle = '#000000';
 	videoImageContext.fillRect(0,0, videoImage.width, videoImage.height);
 
 	// videoTexture = new THREE.Texture( videoo );
 	videoTexture = new THREE.Texture( videoImage );
-	videoTexture.minFilter = THREE.LinearFilter;
+	videoTexture.minFilter = THREE.NearestFilter;
 	videoTexture.magFilter = THREE.LinearFilter;
-	videoTexture.format = THREE.RGBFormat;
-	videoTexture.generateMipmaps = false;
-
-	videoTexture.wrapS = videoTexture.wrapT = THREE.ClampToEdgeWrapping;
-	videoTexture.needsUpdate = true;
 
 	geo = new THREE.PlaneGeometry(16,9);
 	mat = new THREE.MeshBasicMaterial( {map: videoTexture, side: THREE.DoubleSide} );

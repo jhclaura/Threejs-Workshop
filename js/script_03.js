@@ -84,7 +84,7 @@ function init()
 	videoo.autoplay = true;
 	videoo.loop = true;
 	videoo.preload = "auto";
-	videoo.src = "videos/house.mov";
+	videoo.src = "videos/house.mp4";
 
 	//
 	videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
@@ -94,8 +94,8 @@ function init()
     }
 
 	videoImage = document.createElement('canvas');
-	videoImage.width = 720;
-	videoImage.height = 576;
+	videoImage.width = 1920;
+	videoImage.height = 1080;
 
 	videoImageContext = videoImage.getContext('2d');
 	videoImageContext.fillRect(0,0, videoImage.width, videoImage.height);

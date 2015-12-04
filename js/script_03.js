@@ -160,8 +160,8 @@ function init()
 			videoo.load();
 			videoIsLoaded = true;
 		}
-		videoo.play();
-		console.log("play video!");
+		// videoo.play();
+		// console.log("play video!");
 	}
 
 	if(thisIsTouchDevice)

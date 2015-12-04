@@ -84,7 +84,7 @@ function init()
 	// videoo.autoplay = true;
 	videoo.loop = true;
 	// videoo.preload = "auto";
-	videoo.src = "videos/house.mp4";
+	videoo.src = "videos/sintel.mp4";
 
 	//
 	videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);

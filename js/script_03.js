@@ -165,7 +165,7 @@ function init()
 			videoo.load();
 			videoIsLoaded = true;
 		}
-		// videoo.play();
+		videoo.play();
 		// console.log("play video!");
 	}
 

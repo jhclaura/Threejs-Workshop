@@ -191,37 +191,39 @@ var framesPerSecond = 24;
 
 function render()
 {	
-	// if(whichMobile=="iOS_mobile"){
+	if( videoo.readyState === videoo.HAVE_ENOUGH_DATA ) {
+		if(whichMobile=="iOS_mobile"){
 
-	// 	time = Date.now();
-	//     var elapsed = (time - lastTime) / 1000;
+			time = Date.now();
+		    var elapsed = (time - lastTime) / 1000;
 
-	//     // render
-	//     if(elapsed >= ((1000/framesPerSecond)/1000)) {
-	//         videoo.currentTime = videoo.currentTime + elapsed;
-	//         videoImageContext.drawImage(videoo, 0, 0, videoo.videoWidth, videoo.videoHeight);
-	//         if(videoTexture)
-	// 			videoTexture.needsUpdate = true;
-	//         lastTime = time;
-	//     }
+		    // render
+		    if(elapsed >= ((1000/framesPerSecond)/1000)) {
+		        videoo.currentTime = videoo.currentTime + elapsed;
+		        videoImageContext.drawImage(videoo, 0, 0, videoo.videoWidth, videoo.videoHeight);
+		        if(videoTexture)
+					videoTexture.needsUpdate = true;
+		        lastTime = time;
+		    }
 
-	//     // if we are at the end of the video stop
-	//     var currentTime = (Math.round(parseFloat(videoo.currentTime)*10000)/10000);
-	//     var duration = (Math.round(parseFloat(videoo.duration)*10000)/10000);
-	//     if(currentTime >= duration) {
-	//         console.log('currentTime: ' + currentTime + ' duration: ' + videoo.duration);
-	//         // restart
-	//         videoo.currentTime = 0;
-	//         return;
-	//     }
+		    // if we are at the end of the video stop
+		    var currentTime = (Math.round(parseFloat(videoo.currentTime)*10000)/10000);
+		    var duration = (Math.round(parseFloat(videoo.duration)*10000)/10000);
+		    if(currentTime >= duration) {
+		        console.log('currentTime: ' + currentTime + ' duration: ' + videoo.duration);
+		        // restart
+		        videoo.currentTime = 0;
+		        return;
+		    }
 
-	// } else {
-		if( videoo.readyState === videoo.HAVE_ENOUGH_DATA ) {
-			videoImageContext.drawImage(videoo, 0, 0, videoo.width, videoo.height);
-			if(videoTexture)
-				videoTexture.needsUpdate = true;
+		} else {
+			// if( videoo.readyState === videoo.HAVE_ENOUGH_DATA ) {
+				videoImageContext.drawImage(videoo, 0, 0, videoo.width, videoo.height);
+				if(videoTexture)
+					videoTexture.needsUpdate = true;
+			// }
 		}
-	// }
+	}
 
 	renderer.render( scene, cameraThree );
 }

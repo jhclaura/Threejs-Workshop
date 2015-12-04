@@ -212,6 +212,8 @@ function render()
 	    var duration = (Math.round(parseFloat(videoo.duration)*10000)/10000);
 	    if(currentTime >= duration) {
 	        console.log('currentTime: ' + currentTime + ' duration: ' + videoo.duration);
+	        // restart
+	        videoo.currentTime = 0;
 	        return;
 	    }
 

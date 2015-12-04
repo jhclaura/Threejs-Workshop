@@ -103,11 +103,11 @@ function init()
 	videoo = document.getElementById('video');
 	videoImage = document.getElementById('videoImage');
 
-	videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
-	// hide the controls if they're visible
-    if (videoo.hasAttribute("controls")) {
-        videoo.removeAttribute("controls")   
-    }
+	// videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
+	// // hide the controls if they're visible
+ //    if (videoo.hasAttribute("controls")) {
+ //        videoo.removeAttribute("controls")   
+ //    }
 
 	videoImageContext = videoImage.getContext('2d');
 	videoImageContext.fillStyle = '#ffffff';
@@ -169,12 +169,6 @@ function init()
 		
 }
 
-function onVideoPlayButtonClick(){
-	videoo.play();
-}
-
-
-
 function animate() 
 {
     requestAnimationFrame( animate );				//http://creativejs.com/resources/requestanimationframe/
@@ -193,7 +187,7 @@ function update()
 function render()
 {	
 	if( videoo.readyState === videoo.HAVE_ENOUGH_DATA ) {
-		videoImageContext.drawImage(videoo, 0, 0);
+		videoImageContext.drawImage(videoo, 0, 0, videoo.width, videoo.height);
 		if(videoTexture)
 			videoTexture.needsUpdate = true;
 	}

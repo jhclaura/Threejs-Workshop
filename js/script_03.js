@@ -202,6 +202,8 @@ function render()
 	    if(elapsed >= ((1000/framesPerSecond)/1000)) {
 	        videoo.currentTime = videoo.currentTime + elapsed;
 	        videoImageContext.drawImage(videoo, 0, 0, videoo.videoWidth, videoo.videoHeight);
+	        if(videoTexture)
+				videoTexture.needsUpdate = true;
 	        lastTime = time;
 	    }
 

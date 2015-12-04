@@ -25,7 +25,7 @@ var screenHeight = window.innerHeight;
 var imgScreen, screens;
 
 var videoo, videoImage, videoImageContext, videoTexture;
-var videoIsPlaying = false;
+var videoIsLoaded = false;
 
 var thisIsTouchDevice = false;
 if( isTouchDevice() ) thisIsTouchDevice = true;
@@ -156,12 +156,12 @@ function init()
 	controls = new THREE.OrbitControls( cameraThree, renderer.domElement );
 
 	var onTouchStart = function ( event ) {
-		// if(!videoIsPlaying){
+		if(!videoIsLoaded){
 			videoo.load();
-			videoo.play();
-			// videoIsPlaying = true;
-			console.log("play video!");
-		// }		
+			videoIsLoaded = true;
+		}
+		videoo.play();
+		console.log("play video!");
 	}
 
 	if(thisIsTouchDevice)

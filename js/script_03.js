@@ -79,11 +79,19 @@ function init()
 
 	// VIDEO_TEXTURE
 	videoo = document.createElement('video');
+	videoo.setAttribute("webkit-playsinline", "");
+	videoo.setAttribute("playsinline", "");
 	// videoo.autoplay = true;
 	videoo.loop = true;
-	// videoo.preload = "auto";
-	videoo.src = "videos/6B2A5589.MOV";
-	videoo.setAttribute("webkit-playsinline", "");
+	videoo.preload = "auto";
+	videoo.src = "videos/house.mov";
+
+	//
+	videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
+	// hide the controls if they're visible
+    if (videoo.hasAttribute("controls")) {
+        videoo.removeAttribute("controls")   
+    }
 
 	videoImage = document.createElement('canvas');
 	videoImage.width = 1920;

@@ -103,6 +103,12 @@ function init()
 	videoo = document.getElementById('video');
 	videoImage = document.getElementById('videoImage');
 
+	videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
+	// hide the controls if they're visible
+    if (videoo.hasAttribute("controls")) {
+        videoo.removeAttribute("controls")   
+    }
+
 	videoImageContext = videoImage.getContext('2d');
 	videoImageContext.fillStyle = '#ffffff';
 	videoImageContext.fillRect(0,0, videoImage.width, videoImage.height);
@@ -151,6 +157,7 @@ function init()
 
 	var onTouchStart = function ( event ) {
 		// if(!videoIsPlaying){
+			videoo.load();
 			videoo.play();
 			// videoIsPlaying = true;
 			console.log("play video!");

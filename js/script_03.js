@@ -81,9 +81,9 @@ function init()
 	videoo = document.createElement('video');
 	videoo.setAttribute("webkit-playsinline", "");
 	videoo.setAttribute("playsinline", "");
-	videoo.autoplay = true;
+	// videoo.autoplay = true;
 	videoo.loop = true;
-	videoo.preload = "auto";
+	// videoo.preload = "auto";
 	videoo.src = "videos/house.mp4";
 
 	//
@@ -98,15 +98,16 @@ function init()
 	videoImage.height = 1080;
 
 	videoImageContext = videoImage.getContext('2d');
+	videoImageContext.fillStyle = '#000000';
 	videoImageContext.fillRect(0,0, videoImage.width, videoImage.height);
 
 	// videoTexture = new THREE.Texture( videoo );
 	videoTexture = new THREE.Texture( videoImage );
-	videoTexture.minFilter = THREE.NearestFilter;
-	texture.magFilter = THREE.LinearFilter;
+	videoTexture.minFilter = THREE.LinearFilter;
+	videoTexture.magFilter = THREE.LinearFilter;
 
 	geo = new THREE.PlaneGeometry(16,9);
-	mat = new THREE.MeshBasicMaterial( {map: videoTexture, side: THREE.DoubleSide} );
+	mat = new THREE.MeshBasicMaterial( {map: videoTexture, overdraw: true, side: THREE.DoubleSide} );
 
 	for(var i=0; i<100; i+=20 ){
 		for(var j=0; j<100; j+=20) {

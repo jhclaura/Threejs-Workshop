@@ -218,7 +218,7 @@ function render()
 
 		} else {
 			// if( videoo.readyState === videoo.HAVE_ENOUGH_DATA ) {
-				videoImageContext.drawImage(videoo, 0, 0);
+				videoImageContext.drawImage(videoo, 0, 0, videoo.width, videoo.height);
 				if(videoTexture)
 					videoTexture.needsUpdate = true;
 			// }

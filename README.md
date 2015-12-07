@@ -10,9 +10,9 @@ ITP Residents Workshops - 2015
 	* [Intro: Up & Run](http://jhclaura.github.io/Threejs-Workshop/1_intro.html)
 	* [Incorporate with P5js](http://jhclaura.github.io/Threejs-Workshop/2_wP5.html)
 * To be pop-up
-	* [Texture & Video](http://jhclaura.github.io/Threejs-Workshop/3_video.html)
+	* [Import 3D model](http://jhclaura.github.io/Threejs-Workshop/3_model.html)
+	* [Texture & Video](http://jhclaura.github.io/Threejs-Workshop/4_video.html)
 	* Animation Scripting
-	* Import 3D model
 * To be pop-up
 	* VR
 	* X'mas card!

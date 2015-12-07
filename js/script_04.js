@@ -2,6 +2,9 @@
  * Made by @jhclaura (Laura Chen, jhclaura.com)
  * for Three.js Pop-Up Workshops
  * X'mas season 2015
+ *
+ * @Topic: Video
+ * @Reference hugely from: http://jeromeetienne.github.io/threex.videotexture/examples/videotexture.html
  */
  
 ////////////////////////////////////////////////////////////	
@@ -12,6 +15,7 @@
 var scene, cameraThree, renderer;
 var light;
 
+
 var container;
 var controls;
 var screenWidth = window.innerWidth;
@@ -20,11 +24,16 @@ var screenHeight = window.innerHeight;
 // custom global variables
 var imgScreen, screens;
 
-var videoo, videoTexture;
-var videoIsPlaying = false;
+var videoo, videoImage, videoImageContext, videoTexture;
+var videoIsLoaded = false;
 
 var thisIsTouchDevice = false;
 if( isTouchDevice() ) thisIsTouchDevice = true;
+
+
+//
+var lastTime = Date.now();
+var time;
 
 
 ///////////////////////////////////////////////////////////
@@ -75,13 +84,47 @@ function init()
 
 	// VIDEO_TEXTURE
 	videoo = document.createElement('video');
+	videoo.setAttribute("webkit-playsinline", "");
 	videoo.autoplay = true;
 	videoo.loop = true;
-	videoo.src = "videos/house.mp4";
+	videoo.preload = "auto";
+	videoo.src = "videos/sintel.mp4";
 
-	videoTexture = new THREE.Texture( videoo );
-	videoTexture.minFilter = THREE.NearestFilter;
-	texture.magFilter = THREE.LinearFilter;
+	//
+	videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
+	// hide the controls if they're visible
+    if (videoo.hasAttribute("controls")) {
+        videoo.removeAttribute("controls")   
+    }
+
+	videoImage = document.createElement('canvas');
+	videoImage.width = 480;
+	videoImage.height = 204;
+	
+
+	//
+	// videoo = document.getElementById('video');
+	// videoImage = document.getElementById('videoImage');
+
+	// videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
+	// // hide the controls if they're visible
+ //    if (videoo.hasAttribute("controls")) {
+ //        videoo.removeAttribute("controls")   
+ //    }
+
+	videoImageContext = videoImage.getContext('2d');
+	videoImageContext.fillStyle = '#ffffff';
+	videoImageContext.fillRect(0,0, videoImage.width, videoImage.height);
+
+	// videoTexture = new THREE.Texture( videoo );
+	videoTexture = new THREE.Texture( videoImage );
+	videoTexture.minFilter = THREE.LinearFilter;
+	videoTexture.magFilter = THREE.LinearFilter;
+	videoTexture.format = THREE.RGBFormat;
+	videoTexture.generateMipmaps = false;
+
+	videoTexture.wrapS = videoTexture.wrapT = THREE.ClampToEdgeWrapping;
+	videoTexture.needsUpdate = true;
 
 	geo = new THREE.PlaneGeometry(16,9);
 	mat = new THREE.MeshBasicMaterial( {map: videoTexture, side: THREE.DoubleSide} );
@@ -111,25 +154,23 @@ function init()
 	// automatically resize renderer
 	window.addEventListener( 'resize', onWindowResize, false );
 
-	
 	// CONTROLS
 	// left click to rotate, middle click/scroll to zoom, right click to pan
 	controls = new THREE.OrbitControls( cameraThree, renderer.domElement );
 
-
 	var onTouchStart = function ( event ) {
-		if(!videoIsPlaying){
-			videoo.play();
-			videoIsPlaying = true;
-			console.log("play video!");
-		}		
+		if(!videoIsLoaded){
+			videoo.load();
+			videoIsLoaded = true;
+		}
+		videoo.play();
+		// console.log("play video!");
 	}
 
 	if(thisIsTouchDevice)
-		document.addEventListener( 'touchstart', onTouchStart, false );
+		document.body.addEventListener( 'touchstart', onTouchStart, false );
 		
 }
-
 
 function animate() 
 {
@@ -144,12 +185,46 @@ function update()
 
 	imgScreen.rotation.y += 0.1;
 
-	if( videoo.readyState !== videoo.HAVE_ENOUGH_DATA ) return;
-	videoTexture.needsUpdate = true;
 }
 
-function render() 
+var framesPerSecond = 24;
+
+function render()
 {	
+	if( videoo.readyState === videoo.HAVE_ENOUGH_DATA ) {
+		if(whichMobile=="iOS_mobile"){
+
+			time = Date.now();
+		    var elapsed = (time - lastTime) / 1000;
+
+		    // render
+		    if(elapsed >= ((1000/framesPerSecond)/1000)) {
+		        videoo.currentTime = videoo.currentTime + elapsed;
+		        videoImageContext.drawImage(videoo, 0, 0, videoo.videoWidth, videoo.videoHeight);
+		        if(videoTexture)
+					videoTexture.needsUpdate = true;
+		        lastTime = time;
+		    }
+
+		    // if we are at the end of the video stop
+		    var currentTime = (Math.round(parseFloat(videoo.currentTime)*10000)/10000);
+		    var duration = (Math.round(parseFloat(videoo.duration)*10000)/10000);
+		    if(currentTime >= duration) {
+		        console.log('currentTime: ' + currentTime + ' duration: ' + videoo.duration);
+		        // restart
+		        videoo.currentTime = 0;
+		        return;
+		    }
+
+		} else {
+			// if( videoo.readyState === videoo.HAVE_ENOUGH_DATA ) {
+				videoImageContext.drawImage(videoo, 0, 0, videoo.width, videoo.height);
+				if(videoTexture)
+					videoTexture.needsUpdate = true;
+			// }
+		}
+	}
+
 	renderer.render( scene, cameraThree );
 }
 

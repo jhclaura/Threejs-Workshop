@@ -19,7 +19,7 @@ var screenWidth = window.innerWidth;
 var screenHeight = window.innerHeight;
 
 // custom global variables
-var cube;
+var model, texture;
 
 
 // kind of like setup()
@@ -59,36 +59,52 @@ function init()
 	// cameraThree.position.set(0,150,400);				//can also do position.set(x, y, z)
 	scene.add(cameraThree);								//add camera into the scene
 
-
-	// CUBE (MESH)
-	// needs geometry + material
-	var geo = new THREE.BoxGeometry(5,5,5);
-	var mat = new THREE.MeshLambertMaterial( {color: 0xffff00} );
-	cube = new THREE.Mesh( geo, mat );
-	cube.position.x = -10;
-	scene.add(cube);
-
-	for(var i=0; i<50; i+=10 ){
-		for(var j=0; j<50; j+=10) {
-			mat = new THREE.MeshLambertMaterial( {color: Math.random() * 0xffffff} );	// random colors!
-			var mesh = new THREE.Mesh( geo, mat );
-			mesh.position.set(i,j,j)
-			scene.add(mesh);
-		}
-	}
-
-	geo = new THREE.SphereGeometry(5, 32, 32);
-	mat = new THREE.MeshLambertMaterial( {color: 0xffffff} );
-	var sphere = new THREE.Mesh(geo, mat);
-	sphere.position.set(10,0,0);
-	scene.add(sphere);
-
+	// Mesh
 	geo = new THREE.PlaneGeometry(100,100);
-	mat = new THREE.MeshLambertMaterial( {color: 0xed5d9c} );
+	mat = new THREE.MeshLambertMaterial( {color: 0xed5d9c, side: THREE.DoubleSide} );
 	var plane = new THREE.Mesh(geo, mat);
 	plane.position.y = -10;
 	plane.rotation.x = -Math.PI/2;
 	scene.add(plane);
+
+	// Loading External Texture & Model
+	var manager = new THREE.LoadingManager();
+	// TEXTURE
+	texture = new THREE.Texture();
+	var loader = new THREE.ImageLoader( manager );
+	loader.load( 'images/bed.png', function ( image ) {
+		texture.image = image;
+		texture.needsUpdate = true;
+	} );
+
+	// MODLE (MESH)
+	// - Import using OBJLoader.js
+	// - reference: http://threejs.org/examples/webgl_loader_obj.html
+	var onProgress = function ( xhr ) {
+		if ( xhr.lengthComputable ) {
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			console.log( Math.round(percentComplete, 2) + '% downloaded' );
+		}
+	};
+
+	var onError = function ( xhr ) {
+	};
+	var loader = new THREE.OBJLoader( manager );
+	loader.load( 'models/bed.obj', function (object) {
+
+		object.traverse( function ( child ) {
+			if ( child instanceof THREE.Mesh ) {
+				child.material.map = texture;
+			}
+		} );
+
+		model = object;
+		model.scale.set(7,7,7);
+		scene.add( model );
+
+	}, onProgress, onError );
+
+
 	
 
 	// RENDERER
@@ -125,8 +141,6 @@ function animate()
 function update()
 {		
 	controls.update();
-
-	cube.rotation.y += 0.1;
 }
 
 function render() 

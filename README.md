@@ -9,7 +9,7 @@ ITP Residents Workshops - 2015
 * Pop-up on 11/30/15
 	* <a href="http://jhclaura.github.io/Threejs-Workshop/1_intro.html" target="_blank">Intro: Up & Run</a>
 	* <a href="http://jhclaura.github.io/Threejs-Workshop/2_wP5.html" target="_blank">Incorporate with P5js</a>
-* To be pop-up
+* To be pop-up on 12/14/15
 	* <a href="https://docs.google.com/document/d/1RwYWV94LJ3hPDWqfGGE7xWkjkXSig4r1AnkLl5wyo_s/edit#heading=h.1hvl1sgy3gjy" target="_blank">What's UV Mapping?</a>
 	* <a href="http://jhclaura.github.io/Threejs-Workshop/3_model.html" target="_blank">Import 3D model</a>
 	* <a href="http://jhclaura.github.io/Threejs-Workshop/4_video.html" target="_blank">Texture & Video</a>

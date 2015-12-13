@@ -3,7 +3,7 @@
 ITP Residents Workshops - 2015
 
 ## Notes
-[Of the workshops](https://docs.google.com/document/d/1RwYWV94LJ3hPDWqfGGE7xWkjkXSig4r1AnkLl5wyo_s/edit?usp=sharing)
+<a href="https://docs.google.com/document/d/1RwYWV94LJ3hPDWqfGGE7xWkjkXSig4r1AnkLl5wyo_s/edit?usp=sharing" target="_blank">Of the workshops</a>
 
 ## Topic
 * Pop-up on 11/30/15

@@ -12,10 +12,9 @@ ITP Residents Workshops - 2015
 * To be pop-up
 	* <a href="http://jhclaura.github.io/Threejs-Workshop/3_model.html" target="_blank">Import 3D model</a>
 	* <a href="http://jhclaura.github.io/Threejs-Workshop/4_video.html" target="_blank">Texture & Video</a>
-	* Animation Scripting
 * To be pop-up
+	* Animation Scripting
 	* VR
-	* X'mas card!
 
 ## Using local server
 [let's use localhost to serve the page!]

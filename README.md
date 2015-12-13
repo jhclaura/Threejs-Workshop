@@ -33,6 +33,6 @@ Default the HTML page is linked with template_0X.js. In there you can add custom
 Change the script link in HTML file from "template_0X.js" to "script_0X.js", then you can see what it is made in the specific workshop.
 
 ## Resources / Links
-* Three.js: [doc](http://threejs.org/docs/), [examples](http://threejs.org/examples/)
-* [Udacity: Interactive 3D Graphics](https://www.udacity.com/course/interactive-3d-graphics--cs291)
-* [Stemkoski's github](http://stemkoski.github.io/Three.js/)
+* Three.js: <a href="http://threejs.org/docs/" target="_blank">doc</a>, <a href="http://threejs.org/examples/" target="_blank">example</a>
+* <a href="https://www.udacity.com/course/interactive-3d-graphics--cs291" target="_blank">Udacity: Interactive 3D Graphics</a>
+* <a href="http://stemkoski.github.io/Three.js/" target="_blank">Stemkoski's github</a>

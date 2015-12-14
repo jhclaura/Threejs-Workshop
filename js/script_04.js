@@ -139,6 +139,7 @@ function init()
 		}
 
 		videoIsPlaying = !videoIsPlaying;
+		console.log("videoIsPlaying: " + videoIsPlaying);
 	
 		if(videoIsPlaying)
 			videoo.play();

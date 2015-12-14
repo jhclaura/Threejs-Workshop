@@ -12,9 +12,8 @@
 ////////////////////////////////////////////////////////////
 
 // standard global variables
-var scene, cameraThree, renderer;
+var scene, camera, renderer;
 var light;
-
 
 var container;
 var controls;
@@ -25,11 +24,10 @@ var screenHeight = window.innerHeight;
 var imgScreen, screens;
 
 var videoo, videoImage, videoImageContext, videoTexture;
-var videoIsLoaded = false;
+var videoIsLoaded = false, videoIsPlaying = false;
 
 var thisIsTouchDevice = false;
 if( isTouchDevice() ) thisIsTouchDevice = true;
-
 
 //
 var lastTime = Date.now();
@@ -40,11 +38,6 @@ var time;
 
 // kind of like setup()
 init();
-// kind of like draw()/loop()
-animate();
-
-
-
 
 
 ///////////////////////////////////////////////////////////
@@ -57,7 +50,6 @@ function init()
 	// construct environment first
 	scene = new THREE.Scene();
 
-
 	// LIGHT
 	// create light for the scene
 	light = new THREE.DirectionalLight( 0xffffff, 1);
@@ -69,10 +61,10 @@ function init()
 
 	// CAMERA
 	// PerspectiveCamera( field of view, aspect, near, far )
-	cameraThree = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
-	cameraThree.position.z = 100;						//set the position of the camera
-	// cameraThree.position.set(0,150,400);				//can also do position.set(x, y, z)
-	scene.add(cameraThree);								//add camera into the scene
+	camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+	camera.position.z = 100;						//set the position of the camera
+	// camera.position.set(0,150,400);				//can also do position.set(x, y, z)
+	scene.add(camera);								//add camera into the scene
 
 	// IMAGE_TEXTURE
 	var geo = new THREE.PlaneGeometry(10,10);
@@ -90,17 +82,9 @@ function init()
 	videoo.preload = "auto";
 	videoo.src = "videos/sintel.mp4";
 
-	//
-	// videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
-	// // hide the controls if they're visible
- //    if (videoo.hasAttribute("controls")) {
- //        videoo.removeAttribute("controls")   
- //    }
-
 	videoImage = document.createElement('canvas');
 	videoImage.width = 480;
 	videoImage.height = 204;
-
 	//
 	videoImageContext = videoImage.getContext('2d');
 	videoImageContext.fillStyle = '#ffffff';
@@ -143,20 +127,27 @@ function init()
 
 	// CONTROLS
 	// left click to rotate, middle click/scroll to zoom, right click to pan
-	controls = new THREE.OrbitControls( cameraThree, renderer.domElement );
+	controls = new THREE.OrbitControls( camera, renderer.domElement );
 
 	var onTouchStart = function ( event ) {
 		if(!videoIsLoaded){
 			videoo.load();
 			videoIsLoaded = true;
 		}
-		videoo.play();
-		// console.log("play video!");
+
+		if(videoIsPlaying)
+			videoo.pause();
+		else
+			videoo.play();
+		
+		videoIsPlaying != videoIsPlaying;
 	}
 
 	if(thisIsTouchDevice)
 		document.body.addEventListener( 'touchstart', onTouchStart, false );
-		
+
+	// kind of like draw()/loop()
+	animate();		
 }
 
 function animate() 
@@ -200,7 +191,6 @@ function render()
 		        videoo.currentTime = 0;
 		        return;
 		    }
-
 		} else {
 			videoImageContext.drawImage(videoo, 0, 0);
 			if(videoTexture)
@@ -208,12 +198,12 @@ function render()
 		}
 	}
 
-	renderer.render( scene, cameraThree );
+	renderer.render( scene, camera );
 }
 
 function onWindowResize() {
-	cameraThree.aspect = window.innerWidth / window.innerHeight;
-	cameraThree.updateProjectionMatrix();
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 }
 

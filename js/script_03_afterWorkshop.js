@@ -22,6 +22,8 @@ var screenHeight = window.innerHeight;
 // custom global variables
 var model, texture;
 
+var trees = [];
+
 // kind of like setup()
 init();
 
@@ -36,12 +38,12 @@ function init()
 	// construct environment first
 	scene = new THREE.Scene();
 
-
 	// LIGHT
 	// create light for the scene
 	light = new THREE.DirectionalLight( 0xffffff, 1);
 	light.position.set(1,1,1);
 	scene.add(light);
+
 	light = new THREE.DirectionalLight( 0xffffff, 1);
 	light.position.set(-1,1,-1);
 	scene.add(light);
@@ -70,7 +72,7 @@ function init()
 	// TEXTURE
 	texture = new THREE.Texture();
 	var loader = new THREE.ImageLoader( manager );
-	loader.load( 'images/bed.png', function ( image ) {
+	loader.load( 'images/treeColor.png', function ( image ) {
 		texture.image = image;
 		texture.needsUpdate = true;
 	} );
@@ -88,7 +90,7 @@ function init()
 	};
 
 	var loader = new THREE.OBJLoader( manager );
-	loader.load( 'models/bed.obj', function (object) {
+	loader.load( 'models/lowpolytree_afterWorkshop.obj', function (object) {
 
 		// console.log(object);
 
@@ -106,9 +108,24 @@ function init()
 		// 	}
 		// } );
 
-		model = object;
-		model.scale.set(7,7,7);
-		scene.add( model );
+		// model = object;
+		// model.scale.set(7,7,7);
+		// scene.add( model );
+
+
+		for ( var i = 0; i < 500; i ++ ) {
+			var mesh = object.clone();
+			mesh.position.x = ( Math.random() - 0.5 ) * 1000;
+			mesh.position.y = ( Math.random() - 0.5 ) * 1000;
+			mesh.position.z = ( Math.random() - 0.5 ) * 1000;
+			mesh.scale.set(7,7,7);
+			// mesh.updateMatrix();
+			// mesh.matrixAutoUpdate = false;
+			scene.add( mesh );
+			trees.push( mesh );
+		}
+
+
 
 	}, onProgress, onError );
 
@@ -147,6 +164,10 @@ function animate()
 function update()
 {		
 	controls.update();
+
+	for(var i=0; i<trees.length; i++){
+		trees[i].rotation.y += 0.1;
+	}
 }
 
 function render() 

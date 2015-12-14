@@ -135,12 +135,13 @@ function init()
 			videoIsLoaded = true;
 		}
 
-		if(videoIsPlaying)
-			videoo.pause();
-		else
-			videoo.play();
-		
 		videoIsPlaying != videoIsPlaying;
+
+		if(videoIsPlaying)
+			videoo.play();
+		else
+			videoo.pause();
+		
 	}
 
 	if(thisIsTouchDevice)

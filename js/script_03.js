@@ -2,6 +2,8 @@
  * Made by @jhclaura (Laura Chen, jhclaura.com)
  * for Three.js Pop-Up Workshops
  * X'mas season 2015
+ *
+ * @Topic: Import 3D Model
  */
 
 ////////////////////////////////////////////////////////////	
@@ -9,9 +11,8 @@
 ////////////////////////////////////////////////////////////
 
 // standard global variables
-var scene, cameraThree, renderer;
+var scene, camera, renderer;
 var light;
-
 
 var container;
 var controls;
@@ -21,14 +22,10 @@ var screenHeight = window.innerHeight;
 // custom global variables
 var model, texture;
 
+var trees = [];
 
 // kind of like setup()
 init();
-// kind of like draw()/loop()
-animate();
-
-
-
 
 
 ///////////////////////////////////////////////////////////
@@ -41,12 +38,12 @@ function init()
 	// construct environment first
 	scene = new THREE.Scene();
 
-
 	// LIGHT
 	// create light for the scene
 	light = new THREE.DirectionalLight( 0xffffff, 1);
 	light.position.set(1,1,1);
 	scene.add(light);
+
 	light = new THREE.DirectionalLight( 0xffffff, 1);
 	light.position.set(-1,1,-1);
 	scene.add(light);
@@ -54,12 +51,14 @@ function init()
 
 	// CAMERA
 	// PerspectiveCamera( field of view, aspect, near, far )
-	cameraThree = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
-	cameraThree.position.z = 100;						//set the position of the camera
-	// cameraThree.position.set(0,150,400);				//can also do position.set(x, y, z)
-	scene.add(cameraThree);								//add camera into the scene
+	// see more @doc: http://threejs.org/docs/#Reference/Cameras/PerspectiveCamera
+	camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+	camera.position.z = 100;						//set the position of the camera
+	// camera.position.set(0,150,400);				//can also do position.set(x, y, z)
+	scene.add(camera);								//add camera into the scene
 
 	// Mesh
+	// - Floor
 	geo = new THREE.PlaneGeometry(100,100);
 	mat = new THREE.MeshLambertMaterial( {color: 0xed5d9c, side: THREE.DoubleSide} );
 	var plane = new THREE.Mesh(geo, mat);
@@ -68,11 +67,12 @@ function init()
 	scene.add(plane);
 
 	// Loading External Texture & Model
-	var manager = new THREE.LoadingManager();
+	var manager = new THREE.LoadingManager();		//Handles and keeps track of loaded and pending data
+
 	// TEXTURE
 	texture = new THREE.Texture();
 	var loader = new THREE.ImageLoader( manager );
-	loader.load( 'images/bed.png', function ( image ) {
+	loader.load( 'images/treeColor.png', function ( image ) {
 		texture.image = image;
 		texture.needsUpdate = true;
 	} );
@@ -86,35 +86,56 @@ function init()
 			console.log( Math.round(percentComplete, 2) + '% downloaded' );
 		}
 	};
-
 	var onError = function ( xhr ) {
 	};
+
 	var loader = new THREE.OBJLoader( manager );
-	loader.load( 'models/bed.obj', function (object) {
+	loader.load( 'models/lowpolytree_afterWorkshop.obj', function (object) {
 
-		object.traverse( function ( child ) {
-			if ( child instanceof THREE.Mesh ) {
-				child.material.map = texture;
+		// console.log(object);
+
+		// for all the children in the OBJ model
+		for(var i=0; i<object.children.length; i++){
+			if ( object.children[i] instanceof THREE.Mesh ) {
+				object.children[i].material.map = texture;
 			}
-		} );
+		}
 
-		model = object;
-		model.scale.set(7,7,7);
-		scene.add( model );
+		// v_old
+		// object.traverse( function ( child ) {
+		// 	if ( child instanceof THREE.Mesh ) {
+		// 		child.material.map = texture;
+		// 	}
+		// } );
+
+		// model = object;
+		// model.scale.set(7,7,7);
+		// scene.add( model );
+
+
+		for ( var i = 0; i < 500; i ++ ) {
+			var mesh = object.clone();
+			mesh.position.x = ( Math.random() - 0.5 ) * 1000;
+			mesh.position.y = ( Math.random() - 0.5 ) * 1000;
+			mesh.position.z = ( Math.random() - 0.5 ) * 1000;
+			mesh.scale.set(7,7,7);
+			// mesh.updateMatrix();
+			// mesh.matrixAutoUpdate = false;
+			scene.add( mesh );
+			trees.push( mesh );
+		}
+
+
 
 	}, onProgress, onError );
 
-
-	
 
 	// RENDERER
 	container = document.createElement('div');
 	document.body.appendChild(container);
 	renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
 	renderer.setSize(window.innerWidth, window.innerHeight);
-	
 	renderer.setClearColor(0xfdf3a0, 1);			//set background color
-	// renderer.setClearColor(0xffffff, 1);
 
 	container.appendChild(renderer.domElement);
 
@@ -126,8 +147,10 @@ function init()
 	
 	// CONTROLS
 	// left click to rotate, middle click/scroll to zoom, right click to pan
-	controls = new THREE.OrbitControls( cameraThree, renderer.domElement );
-		
+	controls = new THREE.OrbitControls( camera, renderer.domElement );
+	
+	// kind of like draw()/loop()
+	animate();
 }
 
 
@@ -141,15 +164,19 @@ function animate()
 function update()
 {		
 	controls.update();
+
+	for(var i=0; i<trees.length; i++){
+		trees[i].rotation.y += 0.1;
+	}
 }
 
 function render() 
 {	
-	renderer.render( scene, cameraThree );
+	renderer.render( scene, camera );
 }
 
 function onWindowResize() {
-	cameraThree.aspect = window.innerWidth / window.innerHeight;
-	cameraThree.updateProjectionMatrix();
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 }

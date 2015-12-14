@@ -134,8 +134,6 @@ function init()
 			videoo.load();
 			videoIsLoaded = true;
 			videoo.play();
-			videoIsPlaying = true;
-			return;
 		}
 
 		videoIsPlaying = !videoIsPlaying;

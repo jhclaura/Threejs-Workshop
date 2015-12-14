@@ -15,7 +15,6 @@
 var scene, cameraThree, renderer;
 var light;
 
-
 var container;
 var controls;
 var screenWidth = window.innerWidth;
@@ -40,10 +39,6 @@ var time;
 
 // kind of like setup()
 init();
-// kind of like draw()/loop()
-animate();
-
-
 
 
 
@@ -56,7 +51,6 @@ function init()
 	// SCENE
 	// construct environment first
 	scene = new THREE.Scene();
-
 
 	// LIGHT
 	// create light for the scene
@@ -91,11 +85,11 @@ function init()
 	videoo.src = "videos/sintel.mp4";
 
 	//
-	videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
-	// hide the controls if they're visible
-    if (videoo.hasAttribute("controls")) {
-        videoo.removeAttribute("controls")   
-    }
+	// videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
+	// // hide the controls if they're visible
+ //    if (videoo.hasAttribute("controls")) {
+ //        videoo.removeAttribute("controls")   
+ //    }
 
 	videoImage = document.createElement('canvas');
 	videoImage.width = 480;
@@ -103,15 +97,6 @@ function init()
 	
 
 	//
-	// videoo = document.getElementById('video');
-	// videoImage = document.getElementById('videoImage');
-
-	// videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
-	// // hide the controls if they're visible
- //    if (videoo.hasAttribute("controls")) {
- //        videoo.removeAttribute("controls")   
- //    }
-
 	videoImageContext = videoImage.getContext('2d');
 	videoImageContext.fillStyle = '#ffffff';
 	videoImageContext.fillRect(0,0, videoImage.width, videoImage.height);
@@ -169,6 +154,9 @@ function init()
 
 	if(thisIsTouchDevice)
 		document.body.addEventListener( 'touchstart', onTouchStart, false );
+
+	// kind of like draw()/loop()
+	animate();
 		
 }
 
@@ -218,7 +206,7 @@ function render()
 
 		} else {
 			// if( videoo.readyState === videoo.HAVE_ENOUGH_DATA ) {
-				videoImageContext.drawImage(videoo, 0, 0, videoo.width, videoo.height);
+				videoImageContext.drawImage(videoo, 0, 0);
 				if(videoTexture)
 					videoTexture.needsUpdate = true;
 			// }

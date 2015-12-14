@@ -133,10 +133,13 @@ function init()
 		if(!videoIsLoaded){
 			videoo.load();
 			videoIsLoaded = true;
+			videoo.play();
+			videoIsPlaying = true;
+			return;
 		}
 
-		videoIsPlaying != videoIsPlaying;
-
+		videoIsPlaying = !videoIsPlaying;
+	
 		if(videoIsPlaying)
 			videoo.play();
 		else

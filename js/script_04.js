@@ -88,30 +88,20 @@ function init()
 	videoo.autoplay = true;
 	videoo.loop = true;
 	videoo.preload = "auto";
-	videoo.src = "videos/frame.mp4";
+	videoo.src = "videos/sintel.mp4";
 
 	//
-	videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
-	// hide the controls if they're visible
-    if (videoo.hasAttribute("controls")) {
-        videoo.removeAttribute("controls")   
-    }
-
-	videoImage = document.createElement('canvas');
-	videoImage.width = 480;
-	videoImage.height = 204;
-	
-
-	//
-	// videoo = document.getElementById('video');
-	// videoImage = document.getElementById('videoImage');
-
 	// videoo.addEventListener("contextmenu", function (e) { e.preventDefault(); e.stopPropagation(); }, false);
 	// // hide the controls if they're visible
  //    if (videoo.hasAttribute("controls")) {
  //        videoo.removeAttribute("controls")   
  //    }
 
+	videoImage = document.createElement('canvas');
+	videoImage.width = 480;
+	videoImage.height = 204;
+
+	//
 	videoImageContext = videoImage.getContext('2d');
 	videoImageContext.fillStyle = '#ffffff';
 	videoImageContext.fillRect(0,0, videoImage.width, videoImage.height);
@@ -142,14 +132,11 @@ function init()
 	document.body.appendChild(container);
 	renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
 	renderer.setPixelRatio(window.devicePixelRatio);
-	renderer.setSize(window.innerWidth, window.innerHeight);
-	
+	renderer.setSize(window.innerWidth, window.innerHeight);	
 	renderer.setClearColor(0xfdf3a0, 1);			//set background color
-	// renderer.setClearColor(0xffffff, 1);
 
 	container.appendChild(renderer.domElement);
 
-	
 	// EVENTS
 	// automatically resize renderer
 	window.addEventListener( 'resize', onWindowResize, false );
@@ -182,9 +169,7 @@ function animate()
 function update()
 {		
 	controls.update();
-
 	imgScreen.rotation.y += 0.1;
-
 }
 
 var framesPerSecond = 24;
@@ -217,11 +202,9 @@ function render()
 		    }
 
 		} else {
-			// if( videoo.readyState === videoo.HAVE_ENOUGH_DATA ) {
-				videoImageContext.drawImage(videoo, 0, 0);
-				if(videoTexture)
-					videoTexture.needsUpdate = true;
-			// }
+			videoImageContext.drawImage(videoo, 0, 0);
+			if(videoTexture)
+				videoTexture.needsUpdate = true;
 		}
 	}
 

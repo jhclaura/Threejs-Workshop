@@ -7,12 +7,12 @@ ITP Residents Workshops - 2015
 
 ## Topic
 * Pop-up on 11/30/15
-	* <a href="http://jhclaura.github.io/Threejs-Workshop/1_intro.html" target="_blank">Intro: Up & Run</a>
-	* <a href="http://jhclaura.github.io/Threejs-Workshop/2_wP5.html" target="_blank">Incorporate with P5js</a>
-* To be pop-up on 12/14/15
-	* <a href="https://docs.google.com/document/d/1RwYWV94LJ3hPDWqfGGE7xWkjkXSig4r1AnkLl5wyo_s/edit#heading=h.1hvl1sgy3gjy" target="_blank">What's UV Mapping?</a>
-	* <a href="http://jhclaura.github.io/Threejs-Workshop/3_model.html" target="_blank">Import 3D model</a>
-	* <a href="http://jhclaura.github.io/Threejs-Workshop/4_video.html" target="_blank">Texture & Video</a>
+	* <a href="http://jhclaura.github.io/Threejs-Workshop/1_intro.html" target="_blank">Intro: Up & Run</a> Give you ready-to-roll template.
+	* <a href="http://jhclaura.github.io/Threejs-Workshop/2_wP5.html" target="_blank">Incorporate with P5js</a> Just put two canvas, one Three.js, one P5.js, together!
+* Pop-up on 12/14/15
+	* <a href="https://docs.google.com/document/d/1RwYWV94LJ3hPDWqfGGE7xWkjkXSig4r1AnkLl5wyo_s/edit#heading=h.1hvl1sgy3gjy" target="_blank">What's UV Mapping?</a> A way to flatten the 3D model so we can draw texture in 2D format, plus some interesting examples
+	* <a href="http://jhclaura.github.io/Threejs-Workshop/3_model.html" target="_blank">Import 3D model</a> In the workshop, we used Maya to create UVs of a downloaded Christmas tree, and used Photoshop to draw the texture
+	* <a href="http://jhclaura.github.io/Threejs-Workshop/4_video.html" target="_blank">Texture & Video</a> For playing video, it's easy to do in laptop Chrome and Android Chrome, but not iOS iPhone. Playing video on iPhone will be forced to enter fullscreen mode. So the turn-around here is to push the video frame by frame, instead of play the video ( eg. video.play() )
 * To be pop-up
 	* Animation Scripting
 	* VR

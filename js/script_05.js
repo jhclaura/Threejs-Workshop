@@ -102,8 +102,9 @@ function init()
 			var cube = new THREE.Mesh(geo, mat);
 			cube.position.copy( cubePositions[i] );
 			scene.add(cube);
-			// cubes.push(cube);
-			// cubeIsUps.push(false);
+
+			cubes.push(cube);
+			cubeIsUps.push(false);
 		}
 
 	////////////////////////////////////////////////////////////
@@ -159,18 +160,69 @@ function init()
 		window.addEventListener( 'resize', onWindowResize, false );		// automatically resize renderer
 		
 		// click
-		// ...
-		// ...
+		document.addEventListener( 'click', onMouseClick, false );
 
 		// keydown
-		// ...
-		// ...
-
-
-
+		document.addEventListener( 'keydown', onKeyDown, false );
 
 	// kind of like draw()/loop()
 	animate();
+}
+
+function onMouseClick() {
+	for(var i=0; i<10; i++){
+		tree = new THREE.Mesh( treeGeo, treeMat );
+		tree.position.x = ( Math.random() - 0.5) * 1000;
+		tree.position.y = ( Math.random() - 0.5) * 1000;
+		tree.position.z = ( Math.random() - 0.5) * 1000;
+		tree.scale.set(7,7,7);
+
+		// TWEEN
+		new TWEEN.Tween( tree.position )
+		.to( {y: tree.position.y+300}, 700 )
+		.repeat( Infinity )
+		.yoyo (true)
+		.easing( TWEEN.Easing.Cubic.InOut )
+		.start();
+
+		// TWEEN
+		new TWEEN.Tween( tree.rotation )
+		.to( {x: Math.PI*2}, 700 )
+		.repeat( Infinity )
+		.yoyo (true)
+		.easing( TWEEN.Easing.Cubic.InOut )
+		.start();
+
+		scene.add(tree);
+		trees.push(tree);
+	}
+}
+
+function onKeyDown(event) {
+
+	switch (event.keyCode) {
+		case 49:
+			console.log("press 1!");
+
+			if(!cubeIsUps[0]) {
+				// when cube is down, make it up
+				new TWEEN.Tween(cubes[0].position)
+				.to( {y: 20}, 1000 )
+				.easing( TWEEN.Easing.Back.InOut )
+				.start();
+			}
+			else {
+				// when cube is up, make it down
+				new TWEEN.Tween(cubes[0].position)
+				.to( {y: 0}, 1000 )
+				.easing( TWEEN.Easing.Back.InOut )
+				.start();
+			}
+
+			cubeIsUps[0] = !cubeIsUps[0];
+
+		break;
+	}
 }
 
 
@@ -184,6 +236,8 @@ function update() {
 
 	// update controls of camera
 	controls.update();
+
+	TWEEN.update();
 
 	// if any trees exist, rotate it
 	for(var i=0; i<trees.length; i++){

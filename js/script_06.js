@@ -70,9 +70,9 @@ function init()
 	container.appendChild(renderer.domElement);
 
 	// VR_STEREO_EFFECT
-	// ...
-	// ...
-	// ...
+	effect = new THREE.StereoEffect( renderer );
+	effect.eyeSeparation = 10;
+	effect.setSize( window.innerWidth, window.innerHeight );
 
 	// CAMERA
 	// PerspectiveCamera( field of view, aspect, near, far )
@@ -81,7 +81,8 @@ function init()
 	scene.add(camera);								//add camera into the scene
 
 	// CONTROLS
-	controls = new THREE.OrbitControls( camera, renderer.domElement );
+	// controls = new THREE.OrbitControls( camera, renderer.domElement );
+	controls = new THREE.DeviceOrientationControls( camera );
 
 	// TWEEN_CAMERA
 	var cameraTween = new TWEEN.Tween( camera.position )
@@ -255,13 +256,15 @@ function update() {
 }
 
 function render() {	
-	renderer.render( scene, camera );
+	// renderer.rend er( scene, camera );
+	effect.render( scene, camera );
 }
 
 function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
-	renderer.setSize( window.innerWidth, window.innerHeight );
+	// renderer.setSize( window.innerWidth, window.innerHeight );
+	effect.setSize( window.innerWidth, window.innerHeight );
 }
 
 function fullscreen() {

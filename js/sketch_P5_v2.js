@@ -12,7 +12,7 @@ var bug4;
 var p5cs;
 
 function setup() {
-  p5cs = createCanvas(512, 512);
+  p5cs = createCanvas(1024, 1024);
   p5cs.position(0,300);
 
   // Create object
@@ -55,6 +55,8 @@ function Jitter() {
   };
 
   this.display = function() {
+    fill( color("yellow") );
+    noStroke();
     ellipse(this.x, this.y, this.diameter, this.diameter);
   };
 }

@@ -74,7 +74,7 @@ function init()
 	// using p5 canvas as a texture
 	geo = new THREE.PlaneGeometry(100,100);
 	p5Texture = new THREE.Texture( p5cs.elt );
-    mat = new THREE.MeshBasicMaterial({ map: p5Texture });
+    mat = new THREE.MeshBasicMaterial({ map: p5Texture, transparent: true, opacity: 1, side: THREE.DoubleSide });
     var plane = new THREE.Mesh(geo, mat);
 	plane.position.y = -10;
 	plane.rotation.x = -Math.PI/2;
@@ -122,7 +122,8 @@ function animate()
 function update()
 {	
 	// p5
-	background(50, 89, 100);
+	clear();
+	background( 'rgba(50, 89, 100, 0)' );
 	bug1.move();
 	bug1.display();
 	bug2.move();

@@ -9,8 +9,11 @@ var bug2;
 var bug3;
 var bug4;
 
+var p5cs;
+
 function setup() {
-  createCanvas(512, 512);
+  p5cs = createCanvas(512, 512);
+  p5cs.position(0,300);
 
   // Create object
   bug1 = new Jitter();
@@ -18,9 +21,15 @@ function setup() {
   bug3 = new Jitter();
   bug4 = new Jitter();
 
+  // init Three.js
+  init();
 }
 
-function draw() { 
+function draw() {
+  // moved into animate function inside three.js script
+  // so the order will be correct
+  // p5 canvas update -> three.js texture update -> three.js render
+  /*
   background(50, 89, 100);
   bug1.move();
   bug1.display();
@@ -30,6 +39,7 @@ function draw() {
   bug3.display();
   bug4.move();
   bug4.display();
+  */
 }
 
 // Jitter class
